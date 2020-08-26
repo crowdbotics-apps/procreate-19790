@@ -30,6 +30,19 @@ urlpatterns = [
     # Override email confirm to use allauth's HTML view instead of rest_auth's API view
     path("rest-auth/registration/account-confirm-email/<str:key>/", confirm_email),
     path("rest-auth/registration/", include("rest_auth.registration.urls")),
+    path("api/v1/", include("task.api.v1.urls")),
+    path("task/", include("task.urls")),
+    path("api/v1/", include("task_profile.api.v1.urls")),
+    path("task_profile/", include("task_profile.urls")),
+    path("api/v1/", include("tasker_business.api.v1.urls")),
+    path("tasker_business/", include("tasker_business.urls")),
+    path("api/v1/", include("location.api.v1.urls")),
+    path("location/", include("location.urls")),
+    path("api/v1/", include("wallet.api.v1.urls")),
+    path("wallet/", include("wallet.urls")),
+    path("api/v1/", include("task_category.api.v1.urls")),
+    path("task_category/", include("task_category.urls")),
+    path("home/", include("home.urls")),
 ]
 
 admin.site.site_header = "Procreate"
@@ -44,9 +57,7 @@ api_info = openapi.Info(
 )
 
 schema_view = get_schema_view(
-    api_info,
-    public=True,
-    permission_classes=(permissions.IsAuthenticated,),
+    api_info, public=True, permission_classes=(permissions.IsAuthenticated,),
 )
 
 urlpatterns += [
